@@ -58,21 +58,23 @@ void loop() {
   } else {
     lcd.print("HIGH");
   }
-  
+
   pastData += distanceCm;
   pastAvg = pastData / loopCount;
 
   if (pastAvg > distanceCm) {
-    lcd.print(" D");
-  } else if (pastAvg < distanceCm) {
     lcd.print(" U");
+  } else if (pastAvg < distanceCm) {
+    lcd.print(" D");
+  } else {
+    lcd.print(" -");
   }
 
   lcd.setCursor(0, 1);
   lcd.print(distanceCm);
   lcd.print(" ");
   lcd.print(pastAvg);
-  
+
   delay(1000); // No need to update the LCD in very high frequency
   if (loopCount >= 60) {
     loopCount = 0;
