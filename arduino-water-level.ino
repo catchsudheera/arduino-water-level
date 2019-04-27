@@ -8,19 +8,11 @@ const int echoPinT1 = 10;
 const int trigPinT2 = 11;
 const int echoPinT2 = 12;
 
-const int heightTank_1 = 78, bufferTank_1 = 30;
-// Tank 1
-// Hight from bottom to overflow pipe level            : 88.5 cm
-// Hight from top of the tank to overflow pipe level   : 22 cm
-// Sensor unit hight                                   : 3 cm
-// Hight from ball-value's ball to overflow pipe level : 10.5 cm
+const int heightTank_1 = 56, bufferTank_1 = 27;
+const int heightTank_2 = 56, bufferTank_2 = 26;
 
-const int heightTank_2 = 78, bufferTank_2 = 30;
-// Tank 2
-// Hight from bottom to overflow pipe level            : 88.5 cm
-// Hight from top of the tank to overflow pipe level   : 22 cm
-// Sensor unit hight                                   : 3 cm
-// Hight from ball-value's ball to overflow pipe level : 10.5 cm
+const int minTank_1 = 56, maxTank_1 = 26;
+const int minTank_2 = 56, maxTank_2 = 26;
 
 double durationT1, pastDataT1 = 0, pastAvgT1 = 0;
 double durationT2, pastDataT2 = 0, pastAvgT2 = 0;
@@ -33,6 +25,7 @@ void setup() {
   pinMode(echoPinT1, INPUT);
   pinMode(trigPinT2, OUTPUT);
   pinMode(echoPinT2, INPUT);
+//  Serial.begin(9600);
 }
 
 void loop() {
@@ -50,6 +43,7 @@ void loop() {
   if (distanceCmT1 % 2 != 0) { // we need to lower the precision in order not to fluctuate the output percentage value
     distanceCmT1++;
   }
+//  Serial.println(distanceCmT1);
   fillPercTank_1 = ((heightTank_1 + bufferTank_1 - distanceCmT1) * 100.0 / (heightTank_1 * 1.0));
 
   // Limit the range 0-100
